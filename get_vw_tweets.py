@@ -3,9 +3,9 @@ from twitter_client import get_twitter_client
 from tweepy import TweepError
 
 searchQuery = '#volkswagen'  # this is what we're searching for
-maxTweets = 100000 # Some arbitrary large number
+maxTweets = 5 # Some arbitrary large number
 tweetsPerQry = 100  # this is the max the API permits
-fName = 'vwtweets.json' # We'll store the tweets in a text file.
+fName = 'vwtweets1.json' # We'll store the tweets in a text file.
 
 
 # If results from a specific ID onwards are reqd, set since_id to that ID.
