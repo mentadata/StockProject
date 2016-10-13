@@ -1,16 +1,17 @@
 import jsonpickle
+import json
 from twitter_client import get_twitter_client
 from tweepy import TweepError
 
-searchQuery = '#volkswagen'  # this is what we're searching for
-maxTweets = 5 # Some arbitrary large number
+searchQuery = "#volkswagen OR $vlkay OR volkswagen"   # this is what we're searching for $vlkay,volkswagen
+maxTweets = 100000 # Some arbitrary large number
 tweetsPerQry = 100  # this is the max the API permits
-fName = 'vwtweets1.json' # We'll store the tweets in a text file.
+fName = 'vwtweets10112016.json' # We'll store the tweets in a text file.
 
 
 # If results from a specific ID onwards are reqd, set since_id to that ID.
 # else default to no lower limit, go as far back as API allows
-sinceId = None
+sinceId = 785334561966215168
 
 # If results only below a specific ID are, set max_id to that ID.
 # else default to no upper limit, start from the most recent tweet matching the search query.
@@ -22,6 +23,7 @@ if __name__ == '__main__':
     
     print("Downloading max {0} tweets".format(maxTweets))
     with open(fName, 'w') as f:
+        #f.write('[')
         while tweetCount < maxTweets:
             try:
                 if (max_id <= 0):
@@ -42,8 +44,7 @@ if __name__ == '__main__':
                     print("No more tweets found")
                     break
                 for tweet in new_tweets:
-                    f.write(jsonpickle.encode(tweet._json, unpicklable=False) +
-                            '\n')
+                    f.write(jsonpickle.encode(tweet._json)+'\n')
                 tweetCount += len(new_tweets)
                 print("Downloaded {0} tweets".format(tweetCount))
                 max_id = new_tweets[-1].id
