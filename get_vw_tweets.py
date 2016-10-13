@@ -6,12 +6,12 @@ from tweepy import TweepError
 searchQuery = "#volkswagen OR $vlkay OR volkswagen"   # this is what we're searching for $vlkay,volkswagen
 maxTweets = 100000 # Some arbitrary large number
 tweetsPerQry = 100  # this is the max the API permits
-fName = 'vwtweets10112016.json' # We'll store the tweets in a text file.
+fName = 'vwtweets10122016.json' # We'll store the tweets in a text file.
 
 
 # If results from a specific ID onwards are reqd, set since_id to that ID.
 # else default to no lower limit, go as far back as API allows
-sinceId = 785334561966215168
+sinceId = 786036699000344000
 
 # If results only below a specific ID are, set max_id to that ID.
 # else default to no upper limit, start from the most recent tweet matching the search query.
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     client = get_twitter_client()
     
     print("Downloading max {0} tweets".format(maxTweets))
-    with open(fName, 'w') as f:
+    with open(fName, 'w',encoding='utf-8') as f:
         #f.write('[')
         while tweetCount < maxTweets:
             try:
